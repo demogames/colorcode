@@ -33,13 +33,18 @@ class Code {
 }
 
 class CodeWidget extends StatefulWidget {
+  Code _code;
+
+  CodeWidget(Code this._code);
+
   @override
-  createState() => new CodeState();
+  createState() => new CodeState(_code);
 }
 
 class CodeState extends State<CodeWidget> {
-  Code _code = new Code();
-  Random rand = new Random();
+  Code _code;
+
+  CodeState(Code this._code);
 
   @override
   Widget build(BuildContext context) {

@@ -30,41 +30,66 @@ class MyApp extends StatelessWidget {
 
 class GamePage extends StatefulWidget {
   @override
-  _GameState createState() => new _GameState();
+  GameState createState() => new GameState();
 }
 
-class _GameState extends State<GamePage> {
-  var code = <int>[0,0,0,0];
-  var rand = new Random();
+class GameState extends State<GamePage> {
+  var _code;
+  final _rand = new Random();
 
-  var _guesses = new List<List<int>>();
+  var _guesses = new List<Code>();
 
-  var _currentGuess = <int>[0,0,0,0];
+  GameState() {
+    _code = _generateCode();
+  }
 
-  List<int> generateCode() {
-    return code.map((c) { return rand.nextInt(6); }).toList();
+  Code _generateCode() {
+    Code code = new Code();
+    for (int i=0; i<code.pinCount(); ++i) {
+      code[i] = _rand.nextInt(6);
+    }
+    return code;
   }
 
   void _regenerateCode() {
     setState(() {
-      _guesses.add(code);
-      code = generateCode();
+      _guesses.insert(0, _code);
+      _code = _generateCode();
     });
   }
 
   @override
   Widget build(BuildContext context) {
     final guessWidgets = _guesses.map(
-        (guess) {
-          return new ListTile(
-            title: new Text('Hello, World'),
-          );
-        }
+      (guess) {
+        return new ListTile(
+          title: new CodeWidget(guess),
+          trailing: new Icon(Icons.apps),
+        );
+      }
     );
 
     return new Scaffold(
       appBar: new AppBar(
         title: new Text("Brain Master"),
+        actions: <Widget>[
+          new IconButton(
+            icon: new Icon(
+              Icons.sync,
+              color: Theme.of(context).buttonColor,
+            ),
+            tooltip: "regenerate code",
+            onPressed: _regenerateCode
+          ),
+          new IconButton(
+            icon: new Icon(
+              Icons.search,
+              color: Theme.of(context).buttonColor,
+            ),
+            tooltip: "resolve",
+            onPressed: null
+          )
+        ],
       ),
       body: new Column(
         mainAxisAlignment: MainAxisAlignment.end,
@@ -73,7 +98,9 @@ class _GameState extends State<GamePage> {
             child: new ListView(
               children: ListTile.divideTiles(
                 context: context,
-                tiles: guessWidgets).toList()
+                tiles: guessWidgets
+              ).toList(),
+              reverse: true,
             ),
           ),
           new GuessWidget()
@@ -89,6 +116,12 @@ class GuessWidget extends StatefulWidget {
 }
 
 class GuessState extends State<GuessWidget> {
+  var _codeWidget;
+
+  GuessState() {
+    _codeWidget = new CodeWidget(new Code());
+  }
+
   _checkGuess() {
     print("Check Guess");
   }
@@ -98,7 +131,7 @@ class GuessState extends State<GuessWidget> {
     return new Row(
       children: <Widget>[
         new Expanded(
-          child: new CodeWidget(),
+          child: _codeWidget,
           flex: 4,
         ),
         new Expanded(
