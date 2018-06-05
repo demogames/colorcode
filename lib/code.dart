@@ -81,9 +81,12 @@ class CodeState extends State<CodeWidget> {
     showDialog(
         context: context,
         builder: (BuildContext) => new ColorChooser()
-    );
-    setState(() {
-      _code[i] = rand.nextInt(6);
+    ).then((color) {
+      if (color != null) {
+        setState(() {
+          _code[i] = color;
+        });
+      }
     });
   }
 }
@@ -104,7 +107,9 @@ class ColorChooser extends StatelessWidget {
                   Icons.brightness_1,
                   color: CodeMapper.getCodeColor(i),
                 ),
-                onPressed: null,
+                onPressed: () {
+                  Navigator.pop(context, i);
+                },
                 splashColor: null,
                 highlightColor: null,
               ),
