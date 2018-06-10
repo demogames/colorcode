@@ -1,50 +1,18 @@
 import 'package:flutter/material.dart';
-import 'dart:math';
 
-class CodeMapper {
-  static var _codeColors = <Color>[
-    Colors.red,
-    Colors.green,
-    Colors.blue,
-    Colors.yellow,
-    Colors.orange,
-    Colors.purple
-  ];
-
-  static var _defaultColor = Colors.grey;
-
-  static Color getCodeColor(int code) {
-    if (code < 0 || code >= _codeColors.length) {
-      return _defaultColor;
-    }
-    return _codeColors[code];
-  }
-
-  static int colorCount() => _codeColors.length;
-}
-
-class Code {
-  var _code = <int>[-1, -1, -1, -1];
-
-  operator [](int i) => _code[i];
-  operator []=(int i, int value) => _code[i] = value;
-
-  int pinCount() => _code.length;
-}
+import 'package:mastermind/models.dart';
 
 class CodeWidget extends StatefulWidget {
-  Code _code;
+  Code code;
+  bool interactive;
 
-  CodeWidget(Code this._code);
+  CodeWidget({Code this.code, bool this.interactive});
 
   @override
-  createState() => new CodeState(_code);
+  createState() => new CodeState();
 }
 
 class CodeState extends State<CodeWidget> {
-  Code _code;
-
-  CodeState(Code this._code);
 
   @override
   Widget build(BuildContext context) {
@@ -56,7 +24,7 @@ class CodeState extends State<CodeWidget> {
 
   createPinWidgets() {
     var pinWidgets = <Widget>[];
-    for (int i = 0; i < _code.pinCount(); ++i) {
+    for (int i = 0; i < widget.code.pinCount(); ++i) {
       pinWidgets.add(
         new Expanded(
           child: new AspectRatio(
@@ -66,7 +34,7 @@ class CodeState extends State<CodeWidget> {
               child: new IconButton(
                 icon: new Icon(
                   Icons.brightness_1,
-                  color: CodeMapper.getCodeColor(_code[i]),
+                  color: CodeMapper.getCodeColor(widget.code[i]),
                 ),
                 onPressed: () {
                   selectColor(i);
@@ -85,11 +53,11 @@ class CodeState extends State<CodeWidget> {
   selectColor(int i) {
     showDialog(
         context: context,
-        builder: (BuildContext) => new ColorChooser()
+        builder: (BuildContext) => new ColorChooser(widget.code.colorCount())
     ).then((color) {
       if (color != null) {
         setState(() {
-          _code[i] = color;
+          widget.code[i] = color;
         });
       }
     });
@@ -97,10 +65,14 @@ class CodeState extends State<CodeWidget> {
 }
 
 class ColorChooser extends StatelessWidget {
+  final colorCount;
+
+  ColorChooser(int this.colorCount);
+
   @override
   Widget build(BuildContext context) {
     var colorWidgets = <Widget>[];
-    for (int i = 0; i < CodeMapper.colorCount(); ++i) {
+    for (int i = 0; i < colorCount; ++i) {
       colorWidgets.add(
         new Expanded(
           child: new AspectRatio(
