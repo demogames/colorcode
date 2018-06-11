@@ -39,6 +39,7 @@ class HomeScreenState extends State<HomeScreen> {
               new MaterialButton(
                 onPressed: () {
                   widget.changeGameType(0); // FIXME add constant
+                  widget.generateCode();
                   Navigator.pushNamed(context, MasterMindRoutes.game);
                 },
                 child: new Text(
@@ -48,6 +49,7 @@ class HomeScreenState extends State<HomeScreen> {
               new MaterialButton(
                 onPressed: () {
                   widget.changeGameType(1); // FIXME add constant
+                  widget.generateCode();
                   Navigator.pushNamed(context, MasterMindRoutes.game);
                 },
                 child: new Text(

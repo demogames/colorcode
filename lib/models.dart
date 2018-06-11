@@ -7,22 +7,44 @@ class AppState {
   int gameType;
   bool infiniteGuessesEnabled;
   Code code;
-  List<Code> guesses;
+  List<Code> guesses = List<Code>();
+  Code currentGuess;
 
   AppState({
     this.gameType = -1,
     this.infiniteGuessesEnabled = false,
   });
 
-  void makeGuess() {
-
+  bool get guessIsFull {
+    for (var i=0; i<currentGuess.pinCount; ++i) {
+      if (-1 == currentGuess[i])
+        return false;
+    }
+    return true;
   }
+
+  void checkGuess() {
+    guesses.insert(0, currentGuess);
+    currentGuess = Code(
+      pinCount,
+      colorCount,
+      random: false
+    );
+  }
+
+  int get pinCount => gameType == 0 ? 4 : 5;
+  int get colorCount => gameType == 0 ? 6 : 8;
 
   void generateCode() {
     guesses.clear();
+    currentGuess = Code(
+      pinCount,
+      colorCount,
+      random: false
+    );
     code = Code(
-      gameType == 0 ? 4 : 5,
-      gameType == 0 ? 6 : 8,
+      pinCount,
+      colorCount,
       random: true
     );
   }
@@ -68,8 +90,8 @@ class CodeMapper {
     Colors.yellow,
     Colors.orange,
     Colors.purple,
-    Colors.brown,
-    Colors.tealAccent
+    Colors.tealAccent,
+    Colors.brown
   ];
 
   static final _defaultColor = Colors.grey;

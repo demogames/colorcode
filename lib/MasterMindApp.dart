@@ -37,14 +37,22 @@ class MasterMindAppState extends State<MasterMindApp> {
             GameScreen(
               appState: appState,
               generateCode: generateCode,
+              checkGuess: checkGuess,
+              setColor: setColor,
             ),
       },
     );
   }
 
-  void makeGuess() {
+  void setColor(int pin, int color) {
     setState(() {
-      appState.makeGuess();
+      appState.currentGuess[pin] = color;
+    });
+  }
+
+  void checkGuess() {
+    setState(() {
+      appState.checkGuess();
     });
   }
 

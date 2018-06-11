@@ -1,18 +1,24 @@
 import 'package:flutter/material.dart';
+import 'package:mastermind/typedefs.dart';
 import 'dart:math';
 
-import 'package:mastermind/code.dart';
+import 'package:mastermind/widgets/CodeWidget.dart';
 import 'package:mastermind/keys.dart';
 import 'package:mastermind/localization.dart';
 import 'package:mastermind/models.dart';
+import 'package:mastermind/widgets/ColorChooser.dart';
 
 class GameScreen extends StatefulWidget {
   final AppState appState;
   final Function generateCode;
+  final ColorSetter setColor;
+  final Function checkGuess;
 
   GameScreen({
     @required this.appState,
     @required this.generateCode,
+    @required this.setColor,
+    @required this.checkGuess
   }) : super(key : MasterMindKeys.gameScreen);
 
   @override
@@ -34,7 +40,7 @@ class GameScreenState extends State<GameScreen> {
                 color: Theme.of(context).buttonColor,
               ),
               tooltip: "regenerate code",
-              onPressed: widget.appState.generateCode
+              onPressed: widget.generateCode
           ),
         ],
       ),
@@ -49,7 +55,6 @@ class GameScreenState extends State<GameScreen> {
                   return new ListTile(
                     title: new CodeWidget(
                       code: guess,
-                      interactive: false
                     ),
                     trailing: new Icon(Icons.apps),
                   );
@@ -62,11 +67,8 @@ class GameScreenState extends State<GameScreen> {
             children: <Widget>[
               new Expanded(
                 child: new CodeWidget(
-                  code: new Code(
-                    widget.appState.gameType == 0 ? 4 : 5,
-                    widget.appState.gameType == 0 ? 6 : 8,
-                  ),
-                  interactive: true
+                  code: widget.appState.currentGuess,
+                  selectColor: selectColor
                 ),
                 flex: 4,
               ),
@@ -79,7 +81,9 @@ class GameScreenState extends State<GameScreen> {
                       icon: new Icon(
                         Icons.check,
                       ),
-                      onPressed: null,
+                      onPressed: widget.appState.guessIsFull
+                        ? widget.checkGuess
+                        : null,
                     ),
                   ),
                 ),
@@ -90,5 +94,16 @@ class GameScreenState extends State<GameScreen> {
         ],
       ),
     );
+  }
+
+  void selectColor(int i) {
+    showDialog(
+        context: context,
+        builder: (BuildContext) => new ColorChooser(widget.appState.colorCount)
+    ).then((color) {
+      if (color != null) {
+        widget.setColor(i, color);
+      }
+    });
   }
 }
