@@ -13,7 +13,8 @@ class MasterMindLocalizations {
   String get appTitle => "MasterMind";
   String get infiniteGuesses => "Infinite number of guesses";
   String get masterMindClassic => "MasterMind Classic";
-  String get masterMindSuper => "Super MasterMind";
+  String get masterMindSuper => "MasterMind Super";
+  String get chooseGame => "Choose your game!";
 }
 
 class MasterMindLocalizationsDelegate extends LocalizationsDelegate<MasterMindLocalizations> {

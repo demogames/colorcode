@@ -33,41 +33,74 @@ class HomeScreenState extends State<HomeScreen> {
       body: new Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
-          new Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: <Widget>[
-              new MaterialButton(
-                onPressed: () {
-                  widget.initGame(GameType.CLASSIC);
-                  Navigator.pushNamed(context, MasterMindRoutes.game);
-                },
-                child: new Text(
-                  MasterMindLocalizations.of(context).masterMindClassic
-                ),
+          new Padding(
+            padding: new EdgeInsets.all(16.0),
+            child: new Text(
+              MasterMindLocalizations.of(context).chooseGame,
+              style: new TextStyle(
+                fontSize: 32.0,
               ),
-              new MaterialButton(
-                onPressed: () {
-                  widget.initGame(GameType.SUPER);
-                  Navigator.pushNamed(context, MasterMindRoutes.game);
-                },
-                child: new Text(
-                    MasterMindLocalizations.of(context).masterMindSuper
-                ),
-              ),
-            ],
+              softWrap: true,
+              textAlign: TextAlign.center,
+            ),
           ),
-          new Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: <Widget>[
-              new Checkbox(
-                value: widget.appState.infiniteGuessesEnabled,
-                onChanged: widget.enableInfiniteGuesses,
-              ),
-              new Text(
-                MasterMindLocalizations.of(context).infiniteGuesses
-              ),
-            ],
-          )
+          new Padding(
+            padding: new EdgeInsets.all(16.0),
+            child: new Row(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children: <Widget>[
+                new RaisedButton (
+                  onPressed: () {
+                    widget.initGame(GameType.CLASSIC);
+                    Navigator.pushNamed(context, MasterMindRoutes.game);
+                  },
+                  child: new Text(
+                    MasterMindLocalizations.of(context).masterMindClassic.replaceAll(' ', '\n'),
+                    style: new TextStyle(
+                      fontSize: 32.0,
+                    ),
+                    softWrap: true,
+                    textAlign: TextAlign.center,
+                  ),
+                  elevation: 2.0,
+                  color: Colors.white,
+                  padding: new EdgeInsets.all(16.0),
+                ),
+                new RaisedButton(
+                  onPressed: () {
+                    widget.initGame(GameType.SUPER);
+                    Navigator.pushNamed(context, MasterMindRoutes.game);
+                  },
+                  child: new Text(
+                    MasterMindLocalizations.of(context).masterMindSuper.replaceAll(' ', '\n'),
+                    style: new TextStyle(
+                      fontSize: 32.0,
+                    ),
+                    softWrap: true,
+                    textAlign: TextAlign.center,
+                  ),
+                  elevation: 2.0,
+                  color: Colors.white,
+                  padding: new EdgeInsets.all(16.0),
+                ),
+              ],
+            ),
+          ),
+          new Padding(
+            padding: new EdgeInsets.all(16.0),
+            child: new Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: <Widget>[
+                new Checkbox(
+                  value: widget.appState.infiniteGuessesEnabled,
+                  onChanged: widget.enableInfiniteGuesses,
+                ),
+                new Text(
+                  MasterMindLocalizations.of(context).infiniteGuesses
+                ),
+              ],
+            )
+          ),
         ],
       ),
     );
