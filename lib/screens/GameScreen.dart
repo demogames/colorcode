@@ -63,11 +63,16 @@ class GameScreenState extends State<GameScreen> {
                         aspectRatio: 1.0,
                         child: new FittedBox(
                           fit: BoxFit.fill,
-                          child: new IconButton(
-                            icon: new Icon(
-                              Icons.apps,
-                            ),
-                            onPressed: null,
+                          child: new Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: <Widget>[
+                              new Text(
+                                "Pins: " + ((guess.value & 0xF0) >> 4).toString(),
+                              ),
+                              new Text(
+                                "Cols: " + (guess.value & 0x0F).toString(),
+                              )
+                            ],
                           ),
                         ),
                       ),
