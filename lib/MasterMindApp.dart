@@ -30,14 +30,14 @@ class MasterMindAppState extends State<MasterMindApp> {
         MasterMindRoutes.home: (context) =>
             HomeScreen(
               appState: appState,
-              generateCode: generateCode,
+              startGame: startGame,
               enableInfiniteGuesses: enableInfiniteGuesses,
               initGame: initGame,
             ),
         MasterMindRoutes.game: (context) =>
             GameScreen(
               appState: appState,
-              generateCode: generateCode,
+              restartGame: startGame,
               checkGuess: checkGuess,
               setColor: setColor,
             ),
@@ -57,9 +57,9 @@ class MasterMindAppState extends State<MasterMindApp> {
     });
   }
 
-  void generateCode() {
+  void startGame() {
     setState(() {
-      appState.generateCode();
+      appState.startGame();
     });
   }
 
@@ -71,6 +71,6 @@ class MasterMindAppState extends State<MasterMindApp> {
 
   void initGame(GameType type) {
     appState.changeGameType(type);
-    appState.generateCode();
+    appState.startGame();
   }
 }

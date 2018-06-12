@@ -10,6 +10,7 @@ class AppState {
   Code code;
   List<MapEntry<Code, int>> guesses = List<MapEntry<Code, int>>();
   Code currentGuess;
+  bool isOver = false;
 
   AppState({
     this.gameType = GameType.UNDEFINED,
@@ -59,17 +60,24 @@ class AppState {
   void checkGuess() {
     int result = check(code, currentGuess);
     guesses.insert(0, new MapEntry(currentGuess, result));
-    currentGuess = Code(
-      pinCount,
-      colorCount,
-      random: false
-    );
+
+    if (((result & 0xF0) >> 4) == pinCount) {
+      isOver = true;
+      currentGuess = new Code.from(code);
+    } else {
+      currentGuess = Code(
+          pinCount,
+          colorCount,
+          random: false
+      );
+    }
   }
 
   int get pinCount => gameType == GameType.CLASSIC ? 4 : 5;
   int get colorCount => gameType == GameType.CLASSIC ? 6 : 8;
 
-  void generateCode() {
+  void startGame() {
+    isOver = false;
     guesses.clear();
     currentGuess = Code(
       pinCount,

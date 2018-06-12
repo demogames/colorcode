@@ -8,13 +8,13 @@ import 'package:mastermind/typedefs.dart';
 
 class HomeScreen extends StatefulWidget {
   final AppState appState;
-  final Function generateCode;
+  final Function startGame;
   final InfiniteGuessesEnabler enableInfiniteGuesses;
   final GameStarter initGame;
 
   HomeScreen({
     @required this.appState,
-    @required this.generateCode,
+    @required this.startGame,
     @required this.enableInfiniteGuesses,
     @required this.initGame,
   }) : super(key: MasterMindKeys.homeScreen);

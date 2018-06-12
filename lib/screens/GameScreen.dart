@@ -10,13 +10,13 @@ import 'package:mastermind/widgets/ColorChooser.dart';
 
 class GameScreen extends StatefulWidget {
   final AppState appState;
-  final Function generateCode;
+  final Function restartGame;
   final ColorSetter setColor;
   final Function checkGuess;
 
   GameScreen({
     @required this.appState,
-    @required this.generateCode,
+    @required this.restartGame,
     @required this.setColor,
     @required this.checkGuess
   }) : super(key : MasterMindKeys.gameScreen);
@@ -40,7 +40,7 @@ class GameScreenState extends State<GameScreen> {
                 color: Theme.of(context).buttonColor,
               ),
               tooltip: "regenerate code",
-              onPressed: widget.generateCode
+              onPressed: widget.restartGame
           ),
         ],
       ),
@@ -92,7 +92,9 @@ class GameScreenState extends State<GameScreen> {
               new Expanded(
                 child: new CodeWidget(
                   code: widget.appState.currentGuess,
-                  selectColor: selectColor
+                  selectColor: widget.appState.isOver
+                    ? null
+                    : selectColor,
                 ),
                 flex: 4,
               ),
@@ -105,7 +107,7 @@ class GameScreenState extends State<GameScreen> {
                       icon: new Icon(
                         Icons.check,
                       ),
-                      onPressed: widget.appState.guessIsFull
+                      onPressed: widget.appState.guessIsFull && !widget.appState.isOver
                         ? widget.checkGuess
                         : null,
                     ),
