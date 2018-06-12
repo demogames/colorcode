@@ -49,19 +49,38 @@ class GameScreenState extends State<GameScreen> {
         children: [
           new Expanded(
             child: new ListView(
-              children: ListTile.divideTiles(
-                context: context,
-                tiles: widget.appState.guesses.map((guess) {
-                  return new ListTile(
-                    title: new CodeWidget(
-                      code: guess,
+              children: widget.appState.guesses.map((guess) {
+                return new Row (
+                  children: <Widget>[
+                    new Expanded(
+                      child: new CodeWidget(
+                          code: guess.key,
+                      ),
+                      flex: 4,
                     ),
-                    trailing: new Icon(Icons.apps),
-                  );
-                }),
-              ).toList(),
+                    new Expanded(
+                      child: new AspectRatio(
+                        aspectRatio: 1.0,
+                        child: new FittedBox(
+                          fit: BoxFit.fill,
+                          child: new IconButton(
+                            icon: new Icon(
+                              Icons.apps,
+                            ),
+                            onPressed: null,
+                          ),
+                        ),
+                      ),
+                      flex: 1,
+                    ),
+                  ],
+                );
+              }).toList(),
               reverse: true,
             ),
+          ),
+          new Divider(
+            color: Colors.grey,
           ),
           new Row(
             children: <Widget>[

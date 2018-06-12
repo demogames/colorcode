@@ -35,9 +35,18 @@ class ColorChooser extends StatelessWidget {
     }
     return new AlertDialog(
       title: new Text("Choose Color"),
-      content: new Row(
-        children: colorWidgets,
-      ),
+      content: new Column(
+        mainAxisSize: MainAxisSize.min,
+        mainAxisAlignment: MainAxisAlignment.end,
+        children: <Widget>[
+          new Row(
+            children: colorWidgets.sublist(0, (0.5 * colorWidgets.length).floor()),
+          ),
+          new Row(
+            children: colorWidgets.sublist((0.5 * colorWidgets.length).floor(), colorWidgets.length),
+          ),
+        ],
+      )
     );
   }
 }

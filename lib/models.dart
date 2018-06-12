@@ -8,7 +8,7 @@ class AppState {
   GameType gameType;
   bool infiniteGuessesEnabled;
   Code code;
-  List<Code> guesses = List<Code>();
+  List<MapEntry<Code, int>> guesses = List<MapEntry<Code, int>>();
   Code currentGuess;
 
   AppState({
@@ -25,7 +25,7 @@ class AppState {
   }
 
   void checkGuess() {
-    guesses.insert(0, currentGuess);
+    guesses.insert(0, new MapEntry(currentGuess, 0));
     currentGuess = Code(
       pinCount,
       colorCount,
