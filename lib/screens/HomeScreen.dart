@@ -9,14 +9,14 @@ import 'package:mastermind/typedefs.dart';
 class HomeScreen extends StatefulWidget {
   final AppState appState;
   final Function generateCode;
-  final GameTypeChanger changeGameType;
   final InfiniteGuessesEnabler enableInfiniteGuesses;
+  final GameStarter initGame;
 
   HomeScreen({
     @required this.appState,
     @required this.generateCode,
-    @required this.changeGameType,
     @required this.enableInfiniteGuesses,
+    @required this.initGame,
   }) : super(key: MasterMindKeys.homeScreen);
 
   @override
@@ -38,18 +38,16 @@ class HomeScreenState extends State<HomeScreen> {
             children: <Widget>[
               new MaterialButton(
                 onPressed: () {
-                  widget.changeGameType(0); // FIXME add constant
-                  widget.generateCode();
+                  widget.initGame(GameType.CLASSIC);
                   Navigator.pushNamed(context, MasterMindRoutes.game);
                 },
                 child: new Text(
-                  MasterMindLocalizations.of(context).masterMindStandard
+                  MasterMindLocalizations.of(context).masterMindClassic
                 ),
               ),
               new MaterialButton(
                 onPressed: () {
-                  widget.changeGameType(1); // FIXME add constant
-                  widget.generateCode();
+                  widget.initGame(GameType.SUPER);
                   Navigator.pushNamed(context, MasterMindRoutes.game);
                 },
                 child: new Text(

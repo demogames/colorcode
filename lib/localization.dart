@@ -12,7 +12,7 @@ class MasterMindLocalizations {
 
   String get appTitle => "MasterMind";
   String get infiniteGuesses => "Infinite number of guesses";
-  String get masterMindStandard => "MasterMind Standard";
+  String get masterMindClassic => "MasterMind Classic";
   String get masterMindSuper => "Super MasterMind";
 }
 

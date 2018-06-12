@@ -30,8 +30,8 @@ class GameScreenState extends State<GameScreen> {
   Widget build(BuildContext context) {
     return new Scaffold(
       appBar: new AppBar(
-        title: widget.appState.gameType == 0
-          ? Text(MasterMindLocalizations.of(context).masterMindStandard)
+        title: widget.appState.gameType == GameType.CLASSIC
+          ? Text(MasterMindLocalizations.of(context).masterMindClassic)
           : Text(MasterMindLocalizations.of(context).masterMindSuper),
         actions: <Widget>[
           new IconButton(

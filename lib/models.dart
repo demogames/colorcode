@@ -1,17 +1,18 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
+import 'package:mastermind/typedefs.dart';
 
 class AppState {
 
-  int gameType;
+  GameType gameType;
   bool infiniteGuessesEnabled;
   Code code;
   List<Code> guesses = List<Code>();
   Code currentGuess;
 
   AppState({
-    this.gameType = -1,
+    this.gameType = GameType.UNDEFINED,
     this.infiniteGuessesEnabled = false,
   });
 
@@ -32,8 +33,8 @@ class AppState {
     );
   }
 
-  int get pinCount => gameType == 0 ? 4 : 5;
-  int get colorCount => gameType == 0 ? 6 : 8;
+  int get pinCount => gameType == GameType.CLASSIC ? 4 : 5;
+  int get colorCount => gameType == GameType.CLASSIC ? 6 : 8;
 
   void generateCode() {
     guesses.clear();
@@ -49,7 +50,7 @@ class AppState {
     );
   }
 
-  void changeGameType(int type) {
+  void changeGameType(GameType type) {
     this.gameType = type;
   }
 
