@@ -78,10 +78,10 @@ class GameScreenState extends State<GameScreen> {
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: <Widget>[
                               new Text(
-                                "Pins: " + ((guess.value & 0xF0) >> 4).toString(),
+                                "Pins: " + Code.goodPinCount(guess.value).toString(),
                               ),
                               new Text(
-                                "Cols: " + (guess.value & 0x0F).toString(),
+                                "Cols: " + Code.goodColorCount(guess.value).toString(),
                               )
                             ],
                           ),

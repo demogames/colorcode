@@ -25,45 +25,12 @@ class AppState {
     return true;
   }
 
-  int check(Code code, Code guess) {
-    code = new Code.from(code);
-    guess = new Code.from(guess);
-    int rightPlace = 0;
-    int rightColor = 0;
-
-    for (int i=0; i<pinCount; ++i) {
-      if (code[i] == guess[i]) {
-        rightPlace += 1;
-        code[i] = -1;
-        guess[i] = -1;
-      }
-    }
-    for (int i=0; i<pinCount; ++i) {
-      if (guess[i] == -1) {
-        continue;
-      }
-      for (int j=0; j<pinCount; ++j) {
-        if (code[j] == -1) {
-          continue;
-        }
-        if (code[j] == guess[i]) {
-          rightColor += 1;
-          guess[i] = -1;
-          code[j] = -1;
-        }
-      }
-    }
-
-    return (rightPlace << 4) | (rightColor);
-  }
-
   void checkGuess() {
-    int result = check(code, currentGuess);
+    final int result = code.check(currentGuess);
     guesses.insert(0, new MapEntry(currentGuess, result));
 
-    if (((result & 0xF0) >> 4) == pinCount) {
+    if (Code.goodPinCount(result) == pinCount) {
       isOver = true;
-      currentGuess = new Code.from(code);
     } else {
       currentGuess = Code(
           pinCount,
@@ -112,10 +79,45 @@ class Code {
     _code = List<int>(pinCount).map((i) => random ? rand.nextInt(colorCount) : -1).toList();
   }
 
-  factory Code.from(Code code) {
-    Code newCode = new Code(code.pinCount, code.colorCount);
-    newCode._code = new List.from(code._code);
-    return newCode;
+  static int goodPinCount(int v) {
+    return (v & 0xF0) >> 4;
+  }
+
+  static int goodColorCount(int v) {
+    return (v & 0xF0);
+  }
+
+  int check(Code guess) {
+    var code = new List<int>.from(_code);
+    var other = new List<int>.from(guess._code);
+
+    int rightPlace = 0;
+    int rightColor = 0;
+
+    for (int i=0; i<pinCount; ++i) {
+      if (code[i] == other[i]) {
+        rightPlace += 1;
+        code[i] = -1;
+        other[i] = -1;
+      }
+    }
+    for (int i=0; i<pinCount; ++i) {
+      if (other[i] == -1) {
+        continue;
+      }
+      for (int j=0; j<pinCount; ++j) {
+        if (code[j] == -1) {
+          continue;
+        }
+        if (code[j] == other[i]) {
+          rightColor += 1;
+          other[i] = -1;
+          code[j] = -1;
+        }
+      }
+    }
+
+    return (rightPlace << 4) | (rightColor);
   }
 
   @override
