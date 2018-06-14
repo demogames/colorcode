@@ -5,6 +5,7 @@ import 'package:mastermind/models.dart';
 import 'package:mastermind/routes.dart';
 import 'package:mastermind/screens/HomeScreen.dart';
 import 'package:mastermind/screens/GameScreen.dart';
+import 'package:mastermind/screens/AboutScreen.dart';
 import 'package:mastermind/typedefs.dart';
 
 class MasterMindApp extends StatefulWidget {
@@ -41,6 +42,10 @@ class MasterMindAppState extends State<MasterMindApp> {
               checkGuess: checkGuess,
               setColor: setColor,
             ),
+        MasterMindRoutes.about: (context) =>
+            AboutScreen(
+
+            )
       },
     );
   }

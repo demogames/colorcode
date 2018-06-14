@@ -15,6 +15,7 @@ class MasterMindLocalizations {
   String get masterMindClassic => "MasterMind Classic";
   String get masterMindSuper => "MasterMind Super";
   String get chooseGame => "Choose your game!";
+  String get about => "About";
 }
 
 class MasterMindLocalizationsDelegate extends LocalizationsDelegate<MasterMindLocalizations> {

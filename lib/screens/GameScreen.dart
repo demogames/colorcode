@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:mastermind/routes.dart';
 import 'package:mastermind/typedefs.dart';
 import 'dart:math';
 
@@ -35,12 +36,22 @@ class GameScreenState extends State<GameScreen> {
           : Text(MasterMindLocalizations.of(context).masterMindSuper),
         actions: <Widget>[
           new IconButton(
-              icon: new Icon(
-                Icons.sync,
-                color: Theme.of(context).buttonColor,
-              ),
-              tooltip: "regenerate code",
-              onPressed: widget.restartGame
+            icon: new Icon(
+              Icons.sync,
+              color: Theme.of(context).buttonColor,
+            ),
+            tooltip: "regenerate code",
+            onPressed: widget.restartGame
+          ),
+          new IconButton(
+            icon: new Icon(
+              Icons.info_outline,
+              color: Theme.of(context).buttonColor,
+            ),
+            tooltip: "about",
+            onPressed: () {
+              Navigator.pushNamed(context, MasterMindRoutes.about);
+            },
           ),
         ],
       ),

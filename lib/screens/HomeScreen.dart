@@ -29,6 +29,18 @@ class HomeScreenState extends State<HomeScreen> {
     return Scaffold(
       appBar: AppBar(
         title: Text(MasterMindLocalizations.of(context).appTitle),
+        actions: <Widget>[
+          new IconButton(
+            icon: new Icon(
+              Icons.info_outline,
+              color: Theme.of(context).buttonColor,
+            ),
+            tooltip: "about",
+            onPressed: () {
+              Navigator.pushNamed(context, MasterMindRoutes.about);
+            },
+          ),
+        ],
       ),
       body: new Column(
         mainAxisAlignment: MainAxisAlignment.center,
