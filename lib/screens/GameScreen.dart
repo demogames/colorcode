@@ -8,6 +8,7 @@ import 'package:mastermind/keys.dart';
 import 'package:mastermind/localization.dart';
 import 'package:mastermind/models.dart';
 import 'package:mastermind/widgets/ColorChooser.dart';
+import 'package:mastermind/widgets/HintWidget.dart';
 
 class GameScreen extends StatefulWidget {
   final AppState appState;
@@ -74,17 +75,10 @@ class GameScreenState extends State<GameScreen> {
                         aspectRatio: 1.0,
                         child: new FittedBox(
                           fit: BoxFit.fill,
-                          child: new Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: <Widget>[
-                              new Text(
-                                "Pins: " + Code.goodPinCount(guess.value).toString(),
-                              ),
-                              new Text(
-                                "Cols: " + Code.goodColorCount(guess.value).toString(),
-                              )
-                            ],
-                          ),
+                          child: new Padding(
+                            padding: new EdgeInsets.all(16.0),
+                            child: new HintWidget(guess.value),
+                          )
                         ),
                       ),
                       flex: 1,

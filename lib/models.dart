@@ -75,7 +75,7 @@ class Code {
   }
 
   static int goodColorCount(int v) {
-    return (v & 0xF0);
+    return (v & 0x0F);
   }
 
   int check(Code guess) {
