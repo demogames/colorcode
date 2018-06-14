@@ -32,11 +32,7 @@ class AppState {
     if (Code.goodPinCount(result) == pinCount) {
       isOver = true;
     } else {
-      currentGuess = Code(
-          pinCount,
-          colorCount,
-          random: false
-      );
+      currentGuess = new Code.empty(pinCount, colorCount);
     }
   }
 
@@ -46,16 +42,8 @@ class AppState {
   void startGame() {
     isOver = false;
     guesses.clear();
-    currentGuess = Code(
-      pinCount,
-      colorCount,
-      random: false
-    );
-    code = Code(
-      pinCount,
-      colorCount,
-      random: true
-    );
+    currentGuess = new Code.empty(pinCount, colorCount);
+    code = new Code.random(pinCount, colorCount);
   }
 
   void changeGameType(GameType type) {
@@ -75,7 +63,10 @@ class Code {
   final colorCount;
   List<int> _code;
 
-  Code(int this.pinCount, int this.colorCount, {bool random = false}) {
+  factory Code.random(int pinCount, int colorCount) => new Code._internal(pinCount, colorCount, true);
+  factory Code.empty(int pinCount, int colorCount) => new Code._internal(pinCount, colorCount, false);
+
+  Code._internal(int this.pinCount, int this.colorCount, bool random) {
     _code = List<int>(pinCount).map((i) => random ? rand.nextInt(colorCount) : -1).toList();
   }
 
