@@ -9,13 +9,15 @@ import 'package:mastermind/typedefs.dart';
 class HomeScreen extends StatefulWidget {
   final AppState appState;
   final Function startGame;
-  final InfiniteGuessesEnabler enableInfiniteGuesses;
+  final BooleanOptionSetter enableInfiniteGuesses;
+  final BooleanOptionSetter enableDuplicateColors;
   final GameStarter initGame;
 
   HomeScreen({
     @required this.appState,
     @required this.startGame,
     @required this.enableInfiniteGuesses,
+    @required this.enableDuplicateColors,
     @required this.initGame,
   }) : super(key: MasterMindKeys.homeScreen);
 
@@ -69,7 +71,7 @@ class HomeScreenState extends State<HomeScreen> {
                   child: new Text(
                     MasterMindLocalizations.of(context).masterMindClassic.replaceAll(' ', '\n'),
                     style: new TextStyle(
-                      fontSize: 32.0,
+                      fontSize: 24.0,
                     ),
                     softWrap: true,
                     textAlign: TextAlign.center,
@@ -86,7 +88,7 @@ class HomeScreenState extends State<HomeScreen> {
                   child: new Text(
                     MasterMindLocalizations.of(context).masterMindSuper.replaceAll(' ', '\n'),
                     style: new TextStyle(
-                      fontSize: 32.0,
+                      fontSize: 24.0,
                     ),
                     softWrap: true,
                     textAlign: TextAlign.center,
@@ -109,6 +111,21 @@ class HomeScreenState extends State<HomeScreen> {
                 ),
                 new Text(
                   MasterMindLocalizations.of(context).infiniteGuesses
+                ),
+              ],
+            )
+          ),
+          new Padding(
+            padding: new EdgeInsets.all(16.0),
+            child: new Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: <Widget>[
+                new Checkbox(
+                  value: widget.appState.duplicateColorsEnabled,
+                  onChanged: widget.enableDuplicateColors,
+                ),
+                new Text(
+                    MasterMindLocalizations.of(context).allowDuplicateColors
                 ),
               ],
             )

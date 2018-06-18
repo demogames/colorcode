@@ -1,4 +1,4 @@
-typedef InfiniteGuessesEnabler(bool enable);
+typedef BooleanOptionSetter(bool enable);
 
 typedef ColorSetter(int pin, int color);
 

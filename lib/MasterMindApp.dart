@@ -33,6 +33,7 @@ class MasterMindAppState extends State<MasterMindApp> {
               appState: appState,
               startGame: startGame,
               enableInfiniteGuesses: enableInfiniteGuesses,
+              enableDuplicateColors: enableDuplicateColors,
               initGame: initGame,
             ),
         MasterMindRoutes.game: (context) =>
@@ -71,6 +72,12 @@ class MasterMindAppState extends State<MasterMindApp> {
   void enableInfiniteGuesses(bool enable) {
     setState(() {
       appState.enableInfiniteGuesses(enable);
+    });
+  }
+
+  void enableDuplicateColors(bool enable) {
+    setState(() {
+      appState.enableDuplicateColors(enable);
     });
   }
 

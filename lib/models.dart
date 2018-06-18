@@ -7,6 +7,7 @@ class AppState {
 
   GameType gameType;
   bool infiniteGuessesEnabled;
+  bool duplicateColorsEnabled;
   Code code;
   List<MapEntry<Code, int>> guesses = List<MapEntry<Code, int>>();
   Code currentGuess;
@@ -15,6 +16,7 @@ class AppState {
   AppState({
     this.gameType = GameType.UNDEFINED,
     this.infiniteGuessesEnabled = false,
+    this.duplicateColorsEnabled = true,
   });
 
   bool get guessIsFull {
@@ -43,7 +45,7 @@ class AppState {
     isOver = false;
     guesses.clear();
     currentGuess = new Code.empty(pinCount, colorCount);
-    code = new Code.random(pinCount, colorCount);
+    code = new Code.random(pinCount, colorCount, duplicateColorsEnabled);
   }
 
   void changeGameType(GameType type) {
@@ -52,6 +54,10 @@ class AppState {
 
   void enableInfiniteGuesses(bool enable) {
     this.infiniteGuessesEnabled = enable;
+  }
+
+  void enableDuplicateColors(bool enable) {
+    this.duplicateColorsEnabled = enable;
   }
 }
 
@@ -63,11 +69,22 @@ class Code {
   final int colorCount;
   List<int> _code;
 
-  factory Code.random(int pinCount, int colorCount) => new Code._internal(pinCount, colorCount, true);
+  factory Code.random(int pinCount, int colorCount, bool duplicateColors) => new Code._internal(pinCount, colorCount, true, duplicateColors: duplicateColors);
   factory Code.empty(int pinCount, int colorCount) => new Code._internal(pinCount, colorCount, false);
 
-  Code._internal(this.pinCount, this.colorCount, bool random) {
-    _code = List<int>(pinCount).map((i) => random ? rand.nextInt(colorCount) : -1).toList();
+  Code._internal(this.pinCount, this.colorCount, bool random, {bool duplicateColors = false}) {
+    _code = List<int>(pinCount);
+    _code.fillRange(0, pinCount, -1);
+
+    if (random) {
+      int color;
+      for (int i = 0; i < pinCount; ++i) {
+        do {
+          color = rand.nextInt(colorCount);
+        } while (_code.contains(color) && !duplicateColors);
+        _code[i] = color;
+      }
+    }
   }
 
   static int goodPinCount(int v) {

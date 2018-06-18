@@ -12,6 +12,7 @@ class MasterMindLocalizations {
 
   String get appTitle => "MasterMind";
   String get infiniteGuesses => "Infinite number of guesses";
+  String get allowDuplicateColors => "Allow duplicate colors";
   String get masterMindClassic => "MasterMind Classic";
   String get masterMindSuper => "MasterMind Super";
   String get chooseGame => "Choose your game!";
