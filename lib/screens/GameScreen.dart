@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:mastermind/routes.dart';
 import 'package:mastermind/typedefs.dart';
-import 'dart:math';
 
 import 'package:mastermind/widgets/CodeWidget.dart';
 import 'package:mastermind/keys.dart';
@@ -73,13 +72,7 @@ class GameScreenState extends State<GameScreen> {
                     new Expanded(
                       child: new AspectRatio(
                         aspectRatio: 1.0,
-                        child: new FittedBox(
-                          fit: BoxFit.fill,
-                          child: new Padding(
-                            padding: new EdgeInsets.all(16.0),
-                            child: new HintWidget(guess.value),
-                          )
-                        ),
+                        child: new HintWidget(guess.value, widget.appState.pinCount),
                       ),
                       flex: 1,
                     ),
@@ -130,7 +123,7 @@ class GameScreenState extends State<GameScreen> {
   void selectColor(int i) {
     showDialog(
         context: context,
-        builder: (BuildContext) => new ColorChooser(widget.appState.colorCount)
+        builder: (buildContext) => new ColorChooser(widget.appState.colorCount)
     ).then((color) {
       if (color != null) {
         widget.setColor(i, color);

@@ -59,14 +59,14 @@ class AppState {
 class Code {
   static final rand = Random();
 
-  final pinCount;
-  final colorCount;
+  final int pinCount;
+  final int colorCount;
   List<int> _code;
 
   factory Code.random(int pinCount, int colorCount) => new Code._internal(pinCount, colorCount, true);
   factory Code.empty(int pinCount, int colorCount) => new Code._internal(pinCount, colorCount, false);
 
-  Code._internal(int this.pinCount, int this.colorCount, bool random) {
+  Code._internal(this.pinCount, this.colorCount, bool random) {
     _code = List<int>(pinCount).map((i) => random ? rand.nextInt(colorCount) : -1).toList();
   }
 
@@ -117,7 +117,20 @@ class Code {
   }
 
   @override
-  bool operator ==(other) => _code == other._code;
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+          other is Code &&
+              runtimeType == other.runtimeType &&
+              pinCount == other.pinCount &&
+              colorCount == other.colorCount &&
+              _code == other._code;
+
+  @override
+  int get hashCode =>
+      pinCount.hashCode ^
+      colorCount.hashCode ^
+      _code.hashCode;
+
   int  operator [](int i) => _code[i];
   void operator []=(int i, int value) => _code[i] = value;
 }

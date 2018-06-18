@@ -3,9 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:mastermind/models.dart';
 
 class ColorChooser extends StatelessWidget {
-  final colorCount;
+  final int colorCount;
 
-  ColorChooser(int this.colorCount);
+  ColorChooser(this.colorCount);
 
   @override
   Widget build(BuildContext context) {
