@@ -12,7 +12,8 @@ dependencies:
 dev_dependencies:
   flutter_test:
     sdk: flutter
-
+# see https://pub.dartlang.org/packages/flutter_launcher_icons
+# run flutter pub pub run flutter_launcher_icons:main
   flutter_launcher_icons: "^0.5.1"
 
 flutter_icons:
