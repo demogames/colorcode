@@ -35,12 +35,13 @@ class AppState {
       isOver = true;
     } else {
       currentGuess = new Code.empty(pinCount, colorCount);
+      isOver = !(infiniteGuessesEnabled || guesses.length < maxGuessCount);
     }
   }
 
   int get pinCount => gameType == GameType.CLASSIC ? 4 : 5;
   int get colorCount => gameType == GameType.CLASSIC ? 6 : 8;
-  int get maxGuessCount => infiniteGuessesEnabled ? -1 : gameType == GameType.CLASSIC ? 5 : 6;
+  int get maxGuessCount => infiniteGuessesEnabled ? -1 : gameType == GameType.CLASSIC ? 6 : 12;
 
   void startGame() {
     isOver = false;
