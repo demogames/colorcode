@@ -40,6 +40,7 @@ class AppState {
 
   int get pinCount => gameType == GameType.CLASSIC ? 4 : 5;
   int get colorCount => gameType == GameType.CLASSIC ? 6 : 8;
+  int get maxGuessCount => infiniteGuessesEnabled ? -1 : gameType == GameType.CLASSIC ? 5 : 6;
 
   void startGame() {
     isOver = false;

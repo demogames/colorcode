@@ -8,6 +8,7 @@ import 'package:mastermind/localization.dart';
 import 'package:mastermind/models.dart';
 import 'package:mastermind/widgets/ColorChooser.dart';
 import 'package:mastermind/widgets/HintWidget.dart';
+import 'package:mastermind/widgets/StatsWidget.dart';
 
 class GameScreen extends StatefulWidget {
   final AppState appState;
@@ -58,6 +59,12 @@ class GameScreenState extends State<GameScreen> {
       body: new Column(
         mainAxisAlignment: MainAxisAlignment.end,
         children: [
+          new StatsWidget(
+            appState: widget.appState
+          ),
+          new Divider(
+            color: Colors.grey,
+          ),
           new Expanded(
             child: new ListView(
               children: widget.appState.guesses.map((guess) {
