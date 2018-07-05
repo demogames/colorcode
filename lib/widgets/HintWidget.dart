@@ -34,6 +34,7 @@ class HintWidget extends StatelessWidget {
         new GridView.count(
           crossAxisCount: 2,
           childAspectRatio: 1.0,
+          primary: false,
           children: <Widget>[
             hintPin(context, 0),
             hintPin(context, 1),
