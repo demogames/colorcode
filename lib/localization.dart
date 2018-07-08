@@ -2,31 +2,31 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 
-class MasterMindLocalizations {
-  static MasterMindLocalizations of(BuildContext context) {
-    return Localizations.of<MasterMindLocalizations>(
+class ColorCodeLocalizations {
+  static ColorCodeLocalizations of(BuildContext context) {
+    return Localizations.of<ColorCodeLocalizations>(
       context,
-      MasterMindLocalizations
+      ColorCodeLocalizations
     );
   }
 
-  String get appTitle => "MasterMind";
+  String get appTitle => "ColorCode";
   String get infiniteGuesses => "Infinite number of guesses";
   String get allowDuplicateColors => "Allow duplicate colors";
-  String get masterMindClassic => "MasterMind Classic";
-  String get masterMindSuper => "MasterMind Super";
+  String get colorCodeClassic => "ColorCode Classic";
+  String get colorCodeSuper => "ColorCode Super";
   String get chooseGame => "Choose your game!";
   String get about => "About";
   String get guessesMade => "Guesses Made";
 }
 
-class MasterMindLocalizationsDelegate extends LocalizationsDelegate<MasterMindLocalizations> {
+class ColorCodeLocalizationsDelegate extends LocalizationsDelegate<ColorCodeLocalizations> {
   @override
   bool isSupported(Locale locale) => locale.languageCode.toLowerCase().contains("en");
 
   @override
-  Future<MasterMindLocalizations> load(Locale locale) => Future(() => MasterMindLocalizations());
+  Future<ColorCodeLocalizations> load(Locale locale) => Future(() => ColorCodeLocalizations());
 
   @override
-  bool shouldReload(LocalizationsDelegate<MasterMindLocalizations> old) => false;
+  bool shouldReload(LocalizationsDelegate<ColorCodeLocalizations> old) => false;
 }

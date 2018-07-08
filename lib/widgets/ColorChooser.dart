@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'package:mastermind/models.dart';
+import 'package:colorcode/models.dart';
 
 class ColorChooser extends StatelessWidget {
   final int colorCount;

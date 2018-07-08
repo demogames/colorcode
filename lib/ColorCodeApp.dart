@@ -1,34 +1,34 @@
 import 'package:flutter/material.dart';
 
-import 'package:mastermind/localization.dart';
-import 'package:mastermind/models.dart';
-import 'package:mastermind/routes.dart';
-import 'package:mastermind/screens/HomeScreen.dart';
-import 'package:mastermind/screens/GameScreen.dart';
-import 'package:mastermind/screens/AboutScreen.dart';
-import 'package:mastermind/typedefs.dart';
+import 'package:colorcode/localization.dart';
+import 'package:colorcode/models.dart';
+import 'package:colorcode/routes.dart';
+import 'package:colorcode/screens/HomeScreen.dart';
+import 'package:colorcode/screens/GameScreen.dart';
+import 'package:colorcode/screens/AboutScreen.dart';
+import 'package:colorcode/typedefs.dart';
 
-class MasterMindApp extends StatefulWidget {
+class ColorCodeApp extends StatefulWidget {
 
   @override
-  State<StatefulWidget> createState() => MasterMindAppState();
+  State<StatefulWidget> createState() => ColorCodeAppState();
 }
 
-class MasterMindAppState extends State<MasterMindApp> {
+class ColorCodeAppState extends State<ColorCodeApp> {
   AppState appState = AppState();
 
   @override
   Widget build(BuildContext context) {
     return new MaterialApp(
-      title: MasterMindLocalizations().appTitle,
+      title: ColorCodeLocalizations().appTitle,
       theme: new ThemeData(
         primarySwatch: Colors.blue,
       ),
       localizationsDelegates: [
-        MasterMindLocalizationsDelegate(),
+        ColorCodeLocalizationsDelegate(),
       ],
       routes: {
-        MasterMindRoutes.home: (context) =>
+        ColorCodeRoutes.home: (context) =>
             HomeScreen(
               appState: appState,
               startGame: startGame,
@@ -36,14 +36,14 @@ class MasterMindAppState extends State<MasterMindApp> {
               enableDuplicateColors: enableDuplicateColors,
               initGame: initGame,
             ),
-        MasterMindRoutes.game: (context) =>
+        ColorCodeRoutes.game: (context) =>
             GameScreen(
               appState: appState,
               restartGame: startGame,
               checkGuess: checkGuess,
               setColor: setColor,
             ),
-        MasterMindRoutes.about: (context) =>
+        ColorCodeRoutes.about: (context) =>
             AboutScreen(
 
             )

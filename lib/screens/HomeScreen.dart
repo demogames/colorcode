@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 
-import 'package:mastermind/keys.dart';
-import 'package:mastermind/localization.dart';
-import 'package:mastermind/models.dart';
-import 'package:mastermind/routes.dart';
-import 'package:mastermind/typedefs.dart';
+import 'package:colorcode/keys.dart';
+import 'package:colorcode/localization.dart';
+import 'package:colorcode/models.dart';
+import 'package:colorcode/routes.dart';
+import 'package:colorcode/typedefs.dart';
 
 class HomeScreen extends StatefulWidget {
   final AppState appState;
@@ -19,7 +19,7 @@ class HomeScreen extends StatefulWidget {
     @required this.enableInfiniteGuesses,
     @required this.enableDuplicateColors,
     @required this.initGame,
-  }) : super(key: MasterMindKeys.homeScreen);
+  }) : super(key: ColorCodeKeys.homeScreen);
 
   @override
   createState() => HomeScreenState();
@@ -30,7 +30,7 @@ class HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(MasterMindLocalizations.of(context).appTitle),
+        title: Text(ColorCodeLocalizations.of(context).appTitle),
         actions: <Widget>[
           new IconButton(
             icon: new Icon(
@@ -39,7 +39,7 @@ class HomeScreenState extends State<HomeScreen> {
             ),
             tooltip: "about",
             onPressed: () {
-              Navigator.pushNamed(context, MasterMindRoutes.about);
+              Navigator.pushNamed(context, ColorCodeRoutes.about);
             },
           ),
         ],
@@ -50,7 +50,7 @@ class HomeScreenState extends State<HomeScreen> {
           new Padding(
             padding: new EdgeInsets.all(16.0),
             child: new Text(
-              MasterMindLocalizations.of(context).chooseGame,
+              ColorCodeLocalizations.of(context).chooseGame,
               style: new TextStyle(
                 fontSize: 32.0,
               ),
@@ -66,10 +66,10 @@ class HomeScreenState extends State<HomeScreen> {
                 new RaisedButton (
                   onPressed: () {
                     widget.initGame(GameType.CLASSIC);
-                    Navigator.pushNamed(context, MasterMindRoutes.game);
+                    Navigator.pushNamed(context, ColorCodeRoutes.game);
                   },
                   child: new Text(
-                    MasterMindLocalizations.of(context).masterMindClassic.replaceAll(' ', '\n'),
+                    ColorCodeLocalizations.of(context).colorCodeClassic.replaceAll(' ', '\n'),
                     style: new TextStyle(
                       fontSize: 24.0,
                     ),
@@ -83,10 +83,10 @@ class HomeScreenState extends State<HomeScreen> {
                 new RaisedButton(
                   onPressed: () {
                     widget.initGame(GameType.SUPER);
-                    Navigator.pushNamed(context, MasterMindRoutes.game);
+                    Navigator.pushNamed(context, ColorCodeRoutes.game);
                   },
                   child: new Text(
-                    MasterMindLocalizations.of(context).masterMindSuper.replaceAll(' ', '\n'),
+                    ColorCodeLocalizations.of(context).colorCodeSuper.replaceAll(' ', '\n'),
                     style: new TextStyle(
                       fontSize: 24.0,
                     ),
@@ -110,7 +110,7 @@ class HomeScreenState extends State<HomeScreen> {
                   onChanged: widget.enableInfiniteGuesses,
                 ),
                 new Text(
-                  MasterMindLocalizations.of(context).infiniteGuesses
+                  ColorCodeLocalizations.of(context).infiniteGuesses
                 ),
               ],
             )
@@ -125,7 +125,7 @@ class HomeScreenState extends State<HomeScreen> {
                   onChanged: widget.enableDuplicateColors,
                 ),
                 new Text(
-                    MasterMindLocalizations.of(context).allowDuplicateColors
+                    ColorCodeLocalizations.of(context).allowDuplicateColors
                 ),
               ],
             )

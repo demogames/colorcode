@@ -1,7 +1,7 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
-import 'package:mastermind/typedefs.dart';
+import 'package:colorcode/typedefs.dart';
 
 class AppState {
 

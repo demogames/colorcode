@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-import 'package:mastermind/models.dart';
-import 'package:mastermind/typedefs.dart';
+import 'package:colorcode/models.dart';
+import 'package:colorcode/typedefs.dart';
 
 class CodeWidget extends StatelessWidget {
   final Code code;

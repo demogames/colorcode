@@ -1,13 +1,13 @@
 
 import 'package:flutter/material.dart';
-import 'package:mastermind/localization.dart';
+import 'package:colorcode/localization.dart';
 
 class AboutScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return new Scaffold(
       appBar: new AppBar(
-        title: Text(MasterMindLocalizations.of(context).about)
+        title: Text(ColorCodeLocalizations.of(context).about)
       ),
       body: new ListView(
         children: <Widget>[

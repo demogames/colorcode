@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:mastermind/localization.dart';
-import 'package:mastermind/models.dart';
+import 'package:colorcode/localization.dart';
+import 'package:colorcode/models.dart';
 
 class StatsWidget extends StatelessWidget {
   final AppState appState;
@@ -19,7 +19,7 @@ class StatsWidget extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             new Text(
-                MasterMindLocalizations.of(context).guessesMade
+                ColorCodeLocalizations.of(context).guessesMade
             ),
             new Text(
               appState.guesses.length.toString().padLeft(3)

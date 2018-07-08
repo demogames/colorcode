@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:mastermind/routes.dart';
-import 'package:mastermind/typedefs.dart';
+import 'package:colorcode/routes.dart';
+import 'package:colorcode/typedefs.dart';
 
-import 'package:mastermind/widgets/CodeWidget.dart';
-import 'package:mastermind/keys.dart';
-import 'package:mastermind/localization.dart';
-import 'package:mastermind/models.dart';
-import 'package:mastermind/widgets/ColorChooser.dart';
-import 'package:mastermind/widgets/HintWidget.dart';
-import 'package:mastermind/widgets/StatsWidget.dart';
+import 'package:colorcode/widgets/CodeWidget.dart';
+import 'package:colorcode/keys.dart';
+import 'package:colorcode/localization.dart';
+import 'package:colorcode/models.dart';
+import 'package:colorcode/widgets/ColorChooser.dart';
+import 'package:colorcode/widgets/HintWidget.dart';
+import 'package:colorcode/widgets/StatsWidget.dart';
 
 class GameScreen extends StatefulWidget {
   final AppState appState;
@@ -21,7 +21,7 @@ class GameScreen extends StatefulWidget {
     @required this.restartGame,
     @required this.setColor,
     @required this.checkGuess
-  }) : super(key : MasterMindKeys.gameScreen);
+  }) : super(key : ColorCodeKeys.gameScreen);
 
   @override
   createState() => new GameScreenState();
@@ -33,8 +33,8 @@ class GameScreenState extends State<GameScreen> {
     return new Scaffold(
       appBar: new AppBar(
         title: widget.appState.gameType == GameType.CLASSIC
-          ? Text(MasterMindLocalizations.of(context).masterMindClassic)
-          : Text(MasterMindLocalizations.of(context).masterMindSuper),
+          ? Text(ColorCodeLocalizations.of(context).colorCodeClassic)
+          : Text(ColorCodeLocalizations.of(context).colorCodeSuper),
         actions: <Widget>[
           new IconButton(
             icon: new Icon(
@@ -51,7 +51,7 @@ class GameScreenState extends State<GameScreen> {
             ),
             tooltip: "about",
             onPressed: () {
-              Navigator.pushNamed(context, MasterMindRoutes.about);
+              Navigator.pushNamed(context, ColorCodeRoutes.about);
             },
           ),
         ],

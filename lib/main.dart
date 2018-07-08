@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
 
-import 'package:mastermind/MasterMindApp.dart';
+import 'package:colorcode/ColorCodeApp.dart';
 
-void main() => runApp(MasterMindApp());
+void main() => runApp(ColorCodeApp());

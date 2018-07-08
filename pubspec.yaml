@@ -1,5 +1,5 @@
-name: mastermind
-description: A Mastermind-like Puzzle Game
+name: colorcode
+description: A Colorcode-like Puzzle Game
 
 dependencies:
   flutter:

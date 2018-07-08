@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:mastermind/models.dart';
+import 'package:colorcode/models.dart';
 
 class HintWidget extends StatelessWidget {
   final int _pinCount;

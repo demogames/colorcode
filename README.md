@@ -1,6 +1,6 @@
-# mastermind
+# colorcode
 
-A Mastermind-like Puzzle Game
+A Colorcode-like Puzzle Game
 
 ## Getting Started
 
